@@ -56,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                     icon: const Icon(Icons.search),
                     color: Colors.blue,
                     onPressed: () {
+                      // 검색 버튼 누르면 이미지 가져오기
                       context.read<MainScreenViewModel>().getImageList(_textEditingController.text);
                     },
                   ),
