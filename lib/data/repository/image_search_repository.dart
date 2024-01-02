@@ -1,5 +1,5 @@
-import 'package:image_search_app_practice/data/model/image_model.dart';
+import 'package:image_search_app_practice/data/model/image.dart';
 
 abstract interface class ImageSearchRepository {
-  Future<List<Image>> getImage();
+  Future<List<ImageModel>> getImageModel();
 }
