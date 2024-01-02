@@ -4,24 +4,17 @@ import 'package:image_search_app_practice/ui/main_screen_view_model.dart';
 import 'package:image_search_app_practice/ui/widget/image_model_widget.dart';
 import 'package:provider/provider.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
-  void dispose() {
-    _textEditingController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+
+    // watch: 상태 변화를 관찰
+    // notifyListeners가 호출되면 context.watch를 사용하는 위젯에 변경사항을 전파하여 위젯을 갱신
+    // context.watch<MainScreenViewModel>()를 사용하여 생성한 AppState의 상태 객체에 접근
     final viewModel = context.watch<MainScreenViewModel>();
     return Scaffold(
       appBar: AppBar(

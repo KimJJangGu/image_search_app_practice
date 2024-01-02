@@ -19,9 +19,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ChangeNotifierProvider(
+      home: ChangeNotifierProvider( // 상태 관리를 설정
+
+        // MainScreenViewModel 클래스의 인스턴스를 생성
+        // ChangeNotifier를 상속하므로 상태 변화를 인지하고 UI를 업데이트 가능
         create: (_) => MainScreenViewModel(),
-        child: const MainScreen(),
+        child: MainScreen(), // 하위에 MainScreen을 배치하여 UI를 구성
       ),
     );
   }

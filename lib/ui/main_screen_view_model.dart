@@ -3,7 +3,7 @@ import 'package:image_search_app_practice/data/repository/image_search_repositor
 import '../data/model/image.dart';
 import '../data/repository/image_search_repository.dart';
 
-class MainScreenViewModel extends ChangeNotifier{
+class MainScreenViewModel extends ChangeNotifier{ // ChangeNotifier를 상속
   final ImageSearchRepository _repository = ImageSearchRepositoryImpl();
 
   bool _isLoading = false; // 로딩 상태 초기 값을 false로 설정
