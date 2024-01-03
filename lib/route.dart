@@ -9,9 +9,9 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) => ChangeNotifierProvider(
-          create: (_) => getIt<MainScreenViewModel>(),
-      child: MainScreen(),
-      )
+        create: (_) => getIt<MainScreenViewModel>(), // MainScreenViewModel 객체 주입 받기
+        child: MainScreen(),
+      ),
     )
-  ]
+  ],
 );

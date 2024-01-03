@@ -29,7 +29,9 @@ class MainScreenViewModel extends ChangeNotifier {
     notifyListeners();
     _state = state.copyWith(
       isLoading: false,
-      imageModels: List.unmodifiable((await _repository.getImageModel(query)).take(3).toList()),
+      imageModels: List.unmodifiable((await _repository.getImageModel(query)).toList()),
+      // 테스트를 위한 .take(2) -> 사진을 몇개를 가져올지
+      // imageModels: List.unmodifiable((await _repository.getImageModel(query)).take(2).toList()),
     );
     notifyListeners();
   }

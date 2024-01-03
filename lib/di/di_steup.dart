@@ -12,7 +12,7 @@ void diSetup() {
   // 동일한 repository 인스턴스를 공유
   getIt.registerSingleton<ImageSearchRepository>(ImageSearchRepositoryImpl());
 
-  // 매번 새로운 인스턴스 생성
+  // Factory: 매번 새로운 인스턴스를 생성
   // 필요할 때마다 새로운 MainScreenViewModel 인스턴스를 생성
   // repository 매개변수에 getIt<ImageSearchRepository>()를 통해 등록된 싱글턴 repository 주입
   getIt.registerFactory<MainScreenViewModel>(
