@@ -11,7 +11,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // watch: 상태 변화를 관찰
     // notifyListeners가 호출되면 context.watch를 사용하는 위젯에 변경사항을 전파하여 위젯을 갱신
     // context.watch<MainScreenViewModel>()를 사용하여 생성한 AppState의 상태 객체에 접근
@@ -50,28 +49,30 @@ class MainScreen extends StatelessWidget {
                     color: Colors.blue,
                     onPressed: () {
                       // 검색 버튼 누르면 이미지 가져오기
-                      context.read<MainScreenViewModel>().getImageList(_textEditingController.text);
+                      context.read<MainScreenViewModel>().searchImage(_textEditingController.text);
                     },
                   ),
                 ),
               ),
               const SizedBox(height: 24),
-              viewModel.isLoading
-              ? const Center(child: CircularProgressIndicator(),)
-                  :Expanded(
-                child: GridView.builder(
-                  itemCount: viewModel.imageList.length,
-                  itemBuilder: (context, index) {
-                    final ImageModel imageModel = viewModel.imageList[index];
-                    return ImageModelWidget(imageModel: imageModel);
-                  },
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 32,
-                    mainAxisSpacing: 32,
-                  ),
-                ),
-              )
+              viewModel.state.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Expanded(
+                      child: GridView.builder(
+                        itemCount: viewModel.state.imageModel.length,
+                        itemBuilder: (context, index) {
+                          final ImageModel imageModel = viewModel.state.imageModel[index];
+                          return ImageModelWidget(imageModel: imageModel);
+                        },
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 32,
+                          mainAxisSpacing: 32,
+                        ),
+                      ),
+                    )
             ],
           ),
         ),
