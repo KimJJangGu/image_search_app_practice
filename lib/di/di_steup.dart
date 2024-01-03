@@ -13,8 +13,8 @@ void diSetup() {
   // 전역에서 하나의 인스턴스만을 사용하도록 ImageSearchRepositoryImpl 인스턴스 생성
   // 동일한 repository 인스턴스를 공유
   // ImageSearchRepositoryImpl(imageApi: ImageApiImpl());
-  // getIt.registerSingleton<ImageApi>(ImageApiImpl());
-  getIt.registerSingleton<ImageSearchRepository>(ImageSearchRepositoryImpl(imageApi: ImageApiImpl()));
+  getIt.registerSingleton<ImageApi>(ImageApiImpl());
+  getIt.registerSingleton<ImageSearchRepository>(ImageSearchRepositoryImpl(imageApi: getIt<ImageApi>()));
 
   // Factory: 매번 새로운 인스턴스를 생성
   // 필요할 때마다 새로운 MainScreenViewModel 인스턴스를 생성
