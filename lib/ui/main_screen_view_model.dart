@@ -3,13 +3,21 @@ import 'package:image_search_app_practice/data/repository/image_search_repositor
 import '../data/model/image.dart';
 import '../data/repository/image_search_repository.dart';
 
-class MainScreenViewModel extends ChangeNotifier{ // ChangeNotifier를 상속
-  final ImageSearchRepository _repository = ImageSearchRepositoryImpl();
+// ChangeNotifier를 상속
+class MainScreenViewModel extends ChangeNotifier {
+
+  final ImageSearchRepository _repository;
+
+  // 클래스의 인스턴스를 생성할 때 외부(di)에서 repository 주입 가능
+  MainScreenViewModel({required ImageSearchRepository repository}) : _repository = repository;
+
+  //final ImageSearchRepository _repository = ImageSearchRepositoryImpl();
 
   bool _isLoading = false; // 로딩 상태 초기 값을 false로 설정
   bool get isLoading => _isLoading; // _isLoading을 MainScreenViewModel에서 호출 할 수 있도록 만든다
 
   List<ImageModel> _imageList = [];
+
   List<ImageModel> get imageList => List.unmodifiable(_imageList);
 
   Future<void> getImageList(String query) async {
