@@ -61,9 +61,9 @@ class MainScreen extends StatelessWidget {
                     )
                   : Expanded(
                       child: GridView.builder(
-                        itemCount: viewModel.state.imageModel.length,
+                        itemCount: viewModel.state.imageItems.length,
                         itemBuilder: (context, index) {
-                          final ImageModel imageModel = viewModel.state.imageModel[index];
+                          final ImageModel imageModel = viewModel.state.imageItems[index];
                           return ImageModelWidget(imageModel: imageModel);
                         },
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
