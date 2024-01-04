@@ -1,13 +1,48 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_search_app_practice/data/model/image.dart';
+import 'package:image_search_app_practice/ui/main_event.dart';
 import 'package:image_search_app_practice/ui/main_screen_view_model.dart';
 import 'package:image_search_app_practice/ui/widget/image_model_widget.dart';
 import 'package:provider/provider.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   final TextEditingController _textEditingController = TextEditingController();
+
+  StreamSubscription<MainEvent>? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // microtask 스케줄러는 main 스케줄러보다 우선 순위가 높아 initState() 메서드가 완료되기 전 이벤트 스트림 구독
+    // microtask: 빨리 실행되는 작업, 구독: 이벤트를 받기 위한 등록
+    // 구독: Stream의 이벤트를 수신하는 것을 의미
+    Future.microtask(
+      () {
+        // eventStream.listen: MainScreenViewModel의 eventStream을 가져옴
+        subscription = context.read<MainScreenViewModel>().eventStream.listen(
+          (event) {
+            switch (event) {
+              case ShowSnackBar():
+                final snackBar = SnackBar(
+                  content: Text(event.message),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar); // SnackBar 표시
+              case ShowDialog():
+            }
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
